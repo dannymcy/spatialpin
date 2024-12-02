@@ -23,10 +23,10 @@ CACHE_PATH = os.environ.get("TORCH_HOME", os.path.expanduser("~/.cache/torch/hub
 
 def load_model_hf(repo_id, filename, ckpt_config_filename, device='cpu'):
     # https://huggingface.co/docs/huggingface_hub/guides/download
-    file_dir = "/hdd2/chenyang/shapo/main/checkpoints/groundingdino"
+    file_dir = "/hdd2/chenyang/spatialpin/main/checkpoints/groundingdino"
 
     if not os.path.exists(os.path.join(file_dir, ckpt_config_filename)):
-        cache_config_file = hf_hub_download(repo_id=repo_id, local_dir="/hdd2/chenyang/shapo/main/checkpoints/groundingdino", local_dir_use_symlinks=True, filename=ckpt_config_filename)
+        cache_config_file = hf_hub_download(repo_id=repo_id, local_dir="/hdd2/chenyang/spatialpin/main/checkpoints/groundingdino", local_dir_use_symlinks=True, filename=ckpt_config_filename)
     else:
         cache_config_file = os.path.join(file_dir, ckpt_config_filename)
     args = SLConfig.fromfile(cache_config_file)
@@ -34,7 +34,7 @@ def load_model_hf(repo_id, filename, ckpt_config_filename, device='cpu'):
     args.device = device
 
     if not os.path.exists(os.path.join(file_dir, filename)):
-        cache_file = hf_hub_download(repo_id=repo_id, local_dir="/hdd2/chenyang/shapo/main/checkpoints/groundingdino", local_dir_use_symlinks=True, filename=filename)
+        cache_file = hf_hub_download(repo_id=repo_id, local_dir="/hdd2/chenyang/spatialpin/main/checkpoints/groundingdino", local_dir_use_symlinks=True, filename=filename)
     else: 
         cache_file = os.path.join(file_dir, filename)
     checkpoint = torch.load(cache_file, map_location='cpu')
@@ -57,7 +57,7 @@ def transform_image(image) -> torch.Tensor:
 
 class LangSAM():
 
-    def __init__(self, sam_type="vit_h", ckpt_path="/hdd2/chenyang/shapo/main/checkpoints/segment-anything/sam_vit_h_4b8939.pth"):
+    def __init__(self, sam_type="vit_h", ckpt_path="/hdd2/chenyang/spatialpin/main/checkpoints/segment-anything/sam_vit_h_4b8939.pth"):
         self.sam_type = sam_type
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.build_groundingdino()

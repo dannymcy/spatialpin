@@ -1,4 +1,4 @@
-name: /hdd2/chenyang/spatialpin/env
+name: /you_dir/spatialpin/env
 channels:
   - defaults
 dependencies:
@@ -326,4 +326,4 @@ dependencies:
     - yarl==1.9.4
     - zipp==3.17.0
     - zstandard==0.15.2
-prefix: /hdd2/chenyang/spatialpin/env
+prefix: /you_dir/spatialpin/env
