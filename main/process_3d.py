@@ -206,7 +206,7 @@ def inpainted_obj_finding_lang_sam(data_dir, output_dir):
             elif masks.numel() == 0:
                 masks, boxes, phrases, logits = model.predict(img_vis_PIL, "object most similar to " + extract_words_before(obj_text, "of"))
 
-            # Cherry-picked
+            # Special cases, an issue related to the way model.predict return masks
             if not (i == 28 and obj_idx == 1) and not (i == 36 and obj_idx == 1) and not (i == 45 and obj_idx == 1) and not (i == 46 and obj_idx == 2) and not (i == 48 and obj_idx == 3):
                 masks = masks.cpu().squeeze(0).numpy()
             else:
